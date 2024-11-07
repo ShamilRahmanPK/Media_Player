@@ -4,7 +4,7 @@ import { saveCategoryAPI, saveVideoAPI,getAllCategoryAPI, deleteCategoryAPI, upd
 import VideoCard from './VideoCard';
 
 
-const Category = ({setDeleteResponseFromCategory}) => {
+const Category = ({setDeleteResponseFromCategory,deleteResponseFromView}) => {
 
   const [categoryName,setCategoryName] = useState("")
   const [allCategories,setAllCategories]=useState([])
@@ -15,7 +15,7 @@ const Category = ({setDeleteResponseFromCategory}) => {
 
   useEffect(()=>{
     getAllCategories()
-  },[setDeleteResponseFromCategory])
+  },[setDeleteResponseFromCategory,deleteResponseFromView])
 
 
   const handleSaveCategory = async ()=> {
@@ -81,6 +81,12 @@ const Category = ({setDeleteResponseFromCategory}) => {
     setDeleteResponseFromCategory(result)
   }
 
+  const categoryVideoDragStarted = (e,dragVideoDetails,categoryDetails)=>{
+    console.log("inside categoryVideoDragStarted");
+    let dragData = {video:dragVideoDetails,categoryDetails}
+    e.dataTransfer.setData("dragData",JSON.stringify(dragData))
+  }
+
   return (
     <>
     <div className="d-flex justify-content-around align-items-center">
@@ -103,7 +109,8 @@ const Category = ({setDeleteResponseFromCategory}) => {
           {
             catDetails?.allVideos?.length>0 &&
             catDetails?.allVideos?.map(video=>(
-              <div className="col-lg-4">
+              <div draggable={true} onDragStart={e=>categoryVideoDragStarted(e,video,catDetails)}
+              key={video?.id} className="col-lg-4">
               {/* video card */}
               <VideoCard insideCategory={true} displayData={video} />
             </div>

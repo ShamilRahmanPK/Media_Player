@@ -8,6 +8,7 @@ const Home = () => {
 
   const [deleteResponseFromCategory,setDeleteResponseFromCategory] = useState("")
   const [addResponseFromHome,setAddResponseFromHome] = useState("")
+  const [deleteResponseFromView,setDeleteResponseFromView] = useState("")
 
   return (
     <div style={{paddingTop:'100px'}}>
@@ -18,10 +19,10 @@ const Home = () => {
       <div className="container-fluid row my-5">
         <div className="col-lg-6">
           <h3>All Videos</h3>
-          <View addResponseFromHome={addResponseFromHome} deleteResponseFromCategory={deleteResponseFromCategory}/>
+          <View addResponseFromHome={addResponseFromHome} deleteResponseFromCategory={deleteResponseFromCategory} setDeleteResponseFromView={setDeleteResponseFromView}/>
         </div>
         <div className="col-lg-6">
-          <Category setDeleteResponseFromCategory={setDeleteResponseFromCategory}/>
+        <Category setDeleteResponseFromCategory={setDeleteResponseFromCategory} deleteResponseFromView={deleteResponseFromView}/>
         </div>
       </div>
     </div>

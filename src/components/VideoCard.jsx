@@ -58,7 +58,7 @@ const VideoCard = ({displayData,setDeleteVideoResponseFromVideoCard,insideCatego
 
     <Modal size='lg' centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{displayData?.caption}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <iframe width="100%" height="360" src={`${displayData?.youtubeLink}?autoplay=1`} title="caption" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
